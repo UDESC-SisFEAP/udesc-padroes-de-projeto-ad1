@@ -127,9 +127,9 @@ classDiagram
     
     EstadoSemaforo ..> Semaforo : "contexto"
     
-    note for EstadoVermelho "Transiciona para\nEstadoVerde"
-    note for EstadoVerde "Transiciona para\nEstadoAmarelo"
-    note for EstadoAmarelo "Transiciona para\nEstadoVermelho"
+    note for EstadoVermelho "Transiciona para EstadoVerde"
+    note for EstadoVerde "Transiciona para EstadoAmarelo"
+    note for EstadoAmarelo "Transiciona para EstadoVermelho"
 ```
 
 **Legenda:**

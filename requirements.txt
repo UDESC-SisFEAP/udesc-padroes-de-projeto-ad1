@@ -1,0 +1,2 @@
+# Projeto não possui dependências externas
+# Python 3.7+ com biblioteca padrão é suficiente

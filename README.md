@@ -184,7 +184,61 @@ stateDiagram-v2
 2. **Pode ser excessivo para poucos estados simples**: Se há apenas 2-3 estados muito simples, o padrão pode adicionar complexidade desnecessária.
 3. **Mais arquivos para manter**: Em projetos maiores, pode resultar em muitos arquivos de classes de estado.
 
-## 9. Como Executar
+## 9. Estrutura do Projeto
+
+O projeto segue as boas práticas de Python com uma estrutura modular e organizada:
+
+```
+udesc-padroes-de-projeto/
+├── src/                        # Código fonte principal
+│   ├── __init__.py            # Inicialização do pacote src
+│   ├── semaforo.py            # Classe Semaforo (Contexto)
+│   └── states/                # Pacote com todos os estados
+│       ├── __init__.py        # Exporta todos os estados
+│       ├── base.py            # EstadoSemaforo (classe abstrata)
+│       ├── vermelho.py        # EstadoVermelho (estado concreto)
+│       ├── verde.py           # EstadoVerde (estado concreto)
+│       └── amarelo.py         # EstadoAmarelo (estado concreto)
+├── main.py                    # Ponto de entrada da aplicação
+├── requirements.txt           # Dependências do projeto
+├── .gitignore                 # Arquivos ignorados pelo Git
+├── README.md                  # Documentação do projeto
+└── problem-definition.md      # Definição do problema acadêmico
+```
+
+### Organização dos Módulos
+
+#### **`src/semaforo.py`**
+- Contém a classe `Semaforo` (Contexto do padrão State)
+- Responsável por manter o estado atual e delegar comportamentos
+- Fornece métodos públicos: `avancar()`, `mostrar_cor()`, `transicionar_para()`
+
+#### **`src/states/base.py`**
+- Define a classe abstrata `EstadoSemaforo`
+- Estabelece o contrato que todos os estados concretos devem seguir
+- Usa `ABC` (Abstract Base Class) do Python para garantir implementação
+
+#### **`src/states/vermelho.py`, `verde.py`, `amarelo.py`**
+- Cada arquivo contém um estado concreto do semáforo
+- Implementam os métodos `avancar()` e `mostrar_cor()`
+- Definem as transições específicas para o próximo estado
+
+#### **`main.py`**
+- Ponto de entrada da aplicação
+- Demonstra o uso do padrão State
+- Código cliente limpo e separado da lógica de negócio
+
+### Benefícios desta Estrutura
+
+✅ **Separação de Responsabilidades**: Cada módulo tem uma função clara
+✅ **Facilita Testes**: Cada classe pode ser testada independentemente
+✅ **Escalabilidade**: Novos estados podem ser adicionados facilmente
+✅ **Manutenibilidade**: Código organizado é mais fácil de manter
+✅ **Reutilização**: Classes podem ser importadas em outros projetos
+✅ **Type Hints**: Uso de anotações de tipo para melhor IDE support
+✅ **Documentação**: Docstrings em todas as classes e métodos
+
+## 10. Como Executar
 
 ### Pré-requisitos
 - Python 3.7 ou superior
@@ -206,15 +260,25 @@ SISTEMA: Trocando para o estado EstadoVerde
 LUZ: [VERDE] (SIGA!)
 Sinal VERDE... Siga em frente... Trocando para AMARELO.
 
-SISTEMA: Trocando para o estado EstadoAmarelo
-LUZ: [AMARELA] (ATENÇÃO!)
+🚦 SISTEMA: Trocando para o estado EstadoAmarelo
+
+--- Transição 3/6 ---
+🟡 LUZ: [AMARELA] (ATENÇÃO!)
 Sinal AMARELO... Atenção... Trocando para VERMELHO.
 
-SISTEMA: Trocando para o estado EstadoVermelho
 ...
+
+--- Estado Final ---
+🔴 LUZ: [VERMELHA] (PARE!)
+
+Estado atual do semáforo: EstadoVermelho
+
+============================================================
+DEMONSTRAÇÃO CONCLUÍDA COM SUCESSO!
+============================================================
 ```
 
-## 10. Exemplos de Uso Real
+## 11. Exemplos de Uso Real
 
 O padrão State é amplamente utilizado em:
 
@@ -227,13 +291,13 @@ O padrão State é amplamente utilizado em:
 7. **UI/UX**: Estados de componentes (habilitado, desabilitado, carregando, erro)
 8. **Máquinas de Venda Automática**: Estados (aguardando moeda, selecionando produto, dispensando produto)
 
-## 11. Padrões Relacionados
+## 12. Padrões Relacionados
 
 - **Strategy**: Semelhante ao State estruturalmente, mas com intenções diferentes. Strategy se concentra em algoritmos intercambiáveis, enquanto State modela estados internos de um objeto.
 - **Flyweight**: Pode ser usado para compartilhar objetos de estado quando eles não têm dados específicos da instância (estados sem estado interno - stateless states).
 - **Singleton**: Estados frequentemente são implementados como Singletons quando não possuem dados de instância.
 
-## 12. Referências
+## 13. Referências
 
 - Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). *Design Patterns: Elements of Reusable Object-Oriented Software*. Addison-Wesley.
 - [Refactoring.Guru - State Pattern](https://refactoring.guru/design-patterns/state)

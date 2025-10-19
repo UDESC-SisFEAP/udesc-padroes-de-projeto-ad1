@@ -8,7 +8,7 @@
 * Paulo Ricardo
 
 **Link do Repositório GitHub:**
-* [https://github.com/UDESC-SisFEAP/udesc-padroes-de-projeto](https://github.com/UDESC-SisFEAP/udesc-padroes-de-projeto)
+* [https://github.com/UDESC-SisFEAP/udesc-padroes-de-projeto-ad1](https://github.com/UDESC-SisFEAP/udesc-padroes-de-projeto-ad1)
 
 ---
 
